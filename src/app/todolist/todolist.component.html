@@ -1,0 +1,36 @@
+<div class="container">
+  
+    <h1>Todo Application!!</h1>
+    <hr>
+    <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+        <div class="form-group">
+          <label for="task">Task</label>
+          <input type="text" class="form-control" id="task" placeholder="Enter Task" ngModel name="task" required>
+          <small *ngIf="taskForm.invalid && taskForm.dirty" id="emailHelp" class="form-text text-danger">This field is required.</small>
+        </div>
+        
+        <button [disabled]="taskForm.invalid" id="submit_btn" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <hr>
+
+      <div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Completed</th>
+                <th scope="col">Deleted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let t of taskArray  index as i">
+                <td>{{t.taskName}}</td>
+                <td><input (change)="onCheck(i)" id="myCheckBox" type="checkbox"></td>
+                <td><button class="btn btn-danger btn-sm" (click) ='onDelete(i)'>Delete</button></td>
+              </tr>
+              <tr>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+</div>
